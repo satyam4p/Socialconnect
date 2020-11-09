@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
-import misaka
+# import misaka
 # Create your models here.
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 user=get_user_model()
 
@@ -22,7 +22,7 @@ class group(models.Model):
 
     def save(self,*args,**kwargs):
         self.slug=slugify(self.name)
-        self.description_html=misaka.html(self.description)
+        self.description_html=slugify(self.description)
         super().save(*args,**kwargs)
     def get_absolute_url(self):
         return reverse('groups:single',kwargs={'slug':self.slug})
@@ -34,8 +34,8 @@ class group(models.Model):
 
 
 class groupmember(models.Model):
-    group=models.ForeignKey(group,related_name='memberships')
-    user=models.ForeignKey(user,related_name='user_groups')
+    group=models.ForeignKey(group,on_delete=models.CASCADE,related_name='memberships')
+    user=models.ForeignKey(user,on_delete=models.CASCADE,related_name='user_groups')
 
     def __str__(self):
         return self.user.username
