@@ -6,8 +6,5 @@ To enable the javascript code just uncomment the script tag in base.html file..
 
 
 Enjoy!!
-![capture](https://user-images.githubusercontent.com/19893924/35766786-5f6a4c3e-0904-11e8-92bc-6748e4f2f98c.PNG)
-
-Screenshot>>
 
 
